@@ -22,7 +22,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
         throw new AppError(httpStatus.FORBIDDEN, 'Access forbidden: insufficient rights');
       }
 
-      req.user = decoded;
+      // req.user = decoded;
       next();
     } catch (error) {
       if (error instanceof jwt.TokenExpiredError) {
