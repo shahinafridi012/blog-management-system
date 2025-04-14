@@ -9,7 +9,7 @@ const moduleRoutes = [
         route: blogRoutes
     },
     {
-        path: '/api/',
+        path: '/api/auth',
         route: AuthRoutes
     }
 ];

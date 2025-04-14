@@ -16,3 +16,4 @@ const blogSchema = new Schema<TBlog>(
 );
 
 export const Blog = model<TBlog>('Blog', blogSchema);
+     

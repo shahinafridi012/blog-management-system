@@ -1,9 +1,26 @@
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
+// import { TBlog } from './blog.interface';
+
 
 import { blogServices } from './blog.service';
 import httpStatus from 'http-status';
 
+// const CreateBlog = catchAsync(async (req, res) => {
+//   // const { id } = req.user;
+//   // console.log(req.user);
+//   // const payload: TBlog = req.body;
+//   // payload.author = id;  // Assign logged-in user's id!
+
+//   const result = await blogServices.CreateBlogIntoDB(req.body);
+
+//   sendResponse(res, {
+//     statusCode: httpStatus.OK,
+//     success: true,
+//     message: 'Blog is created successfully',
+//     data: result,
+//   });
+// });
 const CreateBlog = catchAsync(async (req, res) => {
   const result = await blogServices.CreateBlogIntoDB(req.body);
   sendResponse(res, {

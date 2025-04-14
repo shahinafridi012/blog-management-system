@@ -14,19 +14,21 @@ const registerUser = async (payload: TUser) => {
   return user;
 };
 
-const loginUser = async (email: string, password: string) => {
+const loginUser = async (payload: TUser) => {
+    const { email, password} = payload
     const user = await User.findOne({ email }).select('+password');
     if (!user) throw new AppError(httpStatus.FORBIDDEN, 'Invalid credentials');
   
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    const isPasswordMatch =  bcrypt.compare(password, user.password); 
+    console.log(isPasswordMatch)
     if (!isPasswordMatch)
       throw new AppError(httpStatus.FORBIDDEN, 'Invalid credentials');
-  
+    
     if (user.isBlocked)
       throw new AppError(httpStatus.FORBIDDEN, 'User is blocked');
   
     const token = jwt.sign(
-      { _id: user._id, role: user.role },
+       { id: user._id, email: user.email, role: user.role },
       config.jwt_access_secret as string,
       { expiresIn: '30d' }
     );
