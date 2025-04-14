@@ -1,12 +1,12 @@
 import { TBlog } from './blog.interface';
 import { Blog } from './blog.model';
 
-const CreateBlogIntoDB = async (payload: TBlog) => {
+const CreateBlogIntoDB = async (payload:TBlog) => {
   const result = await Blog.create(payload);
   return result;
 };
 const getAllBlogsFromDB = async () => {
-  const result = await Blog.find();
+  const result = await Blog.find().populate('author');
   return result;
 };
 const updateBlog = async (id: string, payload: Partial<TBlog>) => {
